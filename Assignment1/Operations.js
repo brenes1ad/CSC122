@@ -50,6 +50,7 @@ let bmi = weight / (height*height) * 703 //Imperial
 console.log(bmi)
 
 function bmiCalc(weight, height){
+    //weight in pounds, height in inches
     return (weight / (height*height) * 703) //Multiply by 703 to use imperial units
 }
 console.log(bmiCalc(100, 120))
