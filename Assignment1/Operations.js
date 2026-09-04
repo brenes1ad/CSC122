@@ -46,10 +46,10 @@ console.log(imperialToMetric(3, 8))
 //Problem 5
 let weight = 100 //in pounds
 let height = 120 //in inches
-let bmi = weight / (height*height) * 703
+let bmi = weight / (height*height) * 703 //Imperial
 console.log(bmi)
 
 function bmiCalc(weight, height){
-    return (weight / (height*height) * 703)
+    return (weight / (height*height) * 703) //Multiply by 703 to use imperial units
 }
 console.log(bmiCalc(100, 120))
