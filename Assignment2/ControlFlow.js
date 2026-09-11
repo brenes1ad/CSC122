@@ -33,13 +33,38 @@ function bmiTable(weight, height) {
 console.log(bmiTable(170, 71))
 
 //Problem 3
-import * as readline from 'node:readline/promises'
-const rl = readline.createInterface({input: process.stdin, output: process.stdout})
-async function babysFirstCalc(){
-    const num1 = await rl.question("Please enter your first number")
-    const num2 = await rl.question("Please enter your second number")
-    const operator = await rl.question("Please enter '+', '-', '*', '/' or '^'")
+import * as readline from 'node:readline/promises';
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+
+async function babysFirstCalc() {
+    const rawNum1 = await rl.question("Please enter your first number: ");
+    const rawNum2 = await rl.question("Please enter your second number: ");
+    const operator = await rl.question("Please enter '+', '-', '*', '/' or '^': ");
+
+    const num1 = Number(rawNum1);
+    const num2 = Number(rawNum2);
+
+    let result;
+
+    if (operator === '+') {
+        result = num1 + num2;
+    } else if (operator === '-') {
+        result = num1 - num2;
+    } else if (operator === '*') {
+        result = num1 * num2;
+    } else if (operator === '/') {
+        result = num1 / num2;
+    } else if (operator === '^') {
+        result = num1 ** num2;
+    } else {
+        result = "Invalid Operator";
+    }
+
+    console.log(`Result: ${result}`);
+
+    rl.close();
 }
+await babysFirstCalc();
 
 
 //Problem 4
@@ -54,7 +79,46 @@ function maxIndex(list){
     }
     return index
 }
+console.log("\n")
 console.log(maxIndex(intList))
+
+//Problem 5
+const rl2 = readline.createInterface({ input: process.stdin, output: process.stdout });
+async function taxpayersArray(){
+    const taxpayers = []
+    const incomeTax = []
+    for (let i = 0; i < 10; i++){
+        const rawInput = await rl2.question(`Enter taxpayer ${i + 1}'s annual income: `)
+
+        taxpayers.push(Number(rawInput));
+
+    }
+    for (let i = 0; i < taxpayers.length; i++){
+        incomeTax.push(taxCalc(taxpayers[i]))
+    }
+    console.log(incomeTax)
+    rl2.close();
+}
+await taxpayersArray()
+
+//Problem 6
+function investments(initial, percArray){
+    let accumPercTotal = 0
+    let finalInvest = initial
+
+    for (let i = 0; i <percArray.length; i++){
+        accumPercTotal += percArray[i]
+
+        const rate = percArray[i] / 100
+        const mult = 1 + rate
+
+        finalInvest *= mult
+    }
+    console.log("Final Investment Total = $", finalInvest, "Accumulated Percentage Total = ", accumPercTotal, "%");
+}
+
+let percentageArray = [4, -2, 5, 10, -3]
+investments(40000, percentageArray)
 
 //Problem 7
 function countryCalc(aPop, aPercent, bPop, bPercent){    //import percentages as integer value
