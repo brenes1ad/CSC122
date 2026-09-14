@@ -60,11 +60,10 @@ async function babysFirstCalc() {
         result = "Invalid Operator";
     }
 
-    console.log(`Result: ${result}`);
-
-    rl.close();
+    console.log(`Result: ${result}`)
 }
 await babysFirstCalc();
+rl.close();
 
 
 //Problem 4
@@ -97,9 +96,10 @@ async function taxpayersArray(){
         incomeTax.push(taxCalc(taxpayers[i]))
     }
     console.log(incomeTax)
-    rl2.close();
+
 }
 await taxpayersArray()
+rl2.close();
 
 //Problem 6
 function investments(initial, percArray){
