@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<button id="myBtn">Try it</button>
+
+<form name="myForm" action="mailto:a@a.com" onsubmit="return validateForm()" method="post">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="fname"/>
+    <input type="submit" value="Submit"/>
+</form>
+
+
+<script>
+function validateForm(){
+    let x = document.forms["myForm"]["fname"].value;
+    if (x.trim() == ""){
+        alert("Name must be filled out!")
+        return false
+    }
+}
+
+function displayDate(){
+    alert(Date())
+}
+document.getElementById("myBtn").onclick = displayDate
+
+</script>
+
+</body>
+</html>

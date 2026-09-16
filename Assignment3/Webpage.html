@@ -5,13 +5,15 @@
 </head>
 <body>
 <div class='section1'>
+  <img src="../src/images/universityLogo.jpg" width="200" height="200"/>
   <h1>College Application Form</h1>
   <p>Please fill out the form below to submit your application.</p>
   <br>
 
-  <form onsubmit="event.preventDefault(); alert('Application Submitted!');">
+  <form name="myForm" onsubmit="return validateForm()">
     <fieldset>
       <legend>Personal Details</legend>
+
 
       <label for="fname">First name:</label>
       <input type="text" id="fname" name="firstName"/>
@@ -19,6 +21,10 @@
 
       <label for="lname">Last name:</label>
       <input type="text" id="lname" name="lastName"/>
+      <br><br>
+
+      <label for="address">Address:</label>
+      <textarea id="address" rows="5" name="address"></textarea>
       <br><br>
 
       <label>Gender :</label>
@@ -54,4 +60,34 @@
 
 </div>
 </body>
+
+<script>
+  function validateForm() {
+    validForm = true
+    let x = document.forms["myForm"]["fname"].value;
+    if (x.trim() == "") {
+      alert("First Name must be filled out!")
+      validForm = false
+    }
+    let y = document.forms["myForm"]["lname"].value;
+    if (y.trim() == "") {
+      alert("Last Name must be filled out!")
+      validForm = false
+    }
+    let z = document.getElementById("address").value
+    if (z.trim() == "") {
+      alert("Address must be filled out!")
+      validForm = false
+    }
+    let a = document.forms["myForm"]["email"].value;
+    if (a.trim() == "") {
+      alert("Email must be filled out!")
+      validForm = false
+    }
+    return validForm
+
+  }
+
+
+</script>
 </html>
