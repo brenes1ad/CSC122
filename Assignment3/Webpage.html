@@ -32,6 +32,8 @@
       <label for="male">Male</label>
       <input type="radio" id="female" name="gender" value="female"/>
       <label for="female">Female</label>
+      <input type="radio" id="Prefer not to say" name="gender" value="Prefer not to say"/>
+      <label for="Prefer not to say">Prefer not to say</label>
       <br><br>
 
       <label for="email">Email:</label>
@@ -84,9 +86,12 @@
       alert("Email must be filled out!")
       validForm = false
     }
+    if (validForm) {
+     alert('Application Submitted!');
+        }
     return validForm
 
-  }
+        }
 
 
 </script>

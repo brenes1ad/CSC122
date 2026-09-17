@@ -1,0 +1,64 @@
+The following text will be the prompt I gave to Gemini to build the baseline of my webpage. After the prompt
+I will explain what I also added myself to expand it out.
+
+Prompt:
+generate an html file for a form similar to this but instead make it a college small general college application form. Remove the "salutation" and "address" fields but keep all those other fields. Also add "intended major" typing input field, "extracurriculars" larger text input field, "unweighted gpa" input field.
+The following is the html I have learned to write so far so try to keep it in the same format and commands as that code
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First HTML Page</title>
+</head>
+<body>
+<div class='section1'>
+    <h1>Hello World!</h1>
+    <p>Welcome to my website.</p>
+    <br>
+
+    <img src="../src/images/carSoccer.jpeg" width="99" height="99"/>
+    <br>
+
+    <a href="http://www.car-soccer.com">Click here</a>
+
+    <br><table border="1">
+    <thead><tr>
+        <th>Name</th> <th>Email</th>
+    </tr></thead>
+    <tbody>
+    <tr><td>Luiz</td> <td>l@email.com</td></tr>
+    <tr><td>Mary</td> <td>m@email.com</td></tr>
+    <tr><td>John</td> <td>j@email.com</td></tr>
+    <tr><td>Todd</td> <td>t@email.com</td></tr>
+    </tbody>
+</table>
+
+    <br>
+
+    <form action="mailto:email@domain.com" method="post">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="userName"/>
+        <br><br>
+        <label for="email">Your Email:</label>
+        <input type="email" id="email" name="email"/>
+        <br><br>
+        <label for="msg">Message:</label>
+        <textarea id="msg" rows="5" name="msg">...</textarea>
+        <br><br>
+        <input type="submit" value="Send Email">
+    </form>
+
+</div>
+</body>
+</html>
+
+Explanation:
+This AI prompt only gave me the basics of the form that could be seen in that screenshot you gave us as assignment
+guidelines. Form fields generated were: First Name, Last Name, Gender(male, female), Email, DOB, Intended Major, Unweighted
+GPA, & Extracurriculars. I also had it just automatically create the header and subheader. After having all that baseline
+generated, I then went and changed how the page worked and added more things by handwriting code. I added the university
+logo on top. I changed it so the submit button pops up a fake alert saying "Form Submitted" instead of attempting to
+send an email because I felt like that wasn't as fitting and also just annoying to test. I also added the form
+verification for the FirstName, LastName, Address, and Email Fields. I finally also tweaked the gender radio button choice
+to add the "Prefer not to say" button since I feel like that is normally present on application forms. I understand how
+all the code works and how to build the website, I just felt like it was a lot of redundant coding, so I chose to have
+AI generate base of the webpage for me to then go in and modify and add.
