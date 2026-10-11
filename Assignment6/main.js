@@ -1,27 +1,13 @@
 import fs from 'fs';
 
-/**
- * Escapes CSV field values.
- * Escapes double quotes and wraps values in double quotes.
- */
 function escapeCsvValue(val) {
     if (val === null || val === undefined) return '""';
-
-    // Convert arrays or non-string values to string
     let str = Array.isArray(val) ? val.join(', ') : String(val);
-
-    // Escape existing double quotes by doubling them ("" -> """")
     str = str.replace(/"/g, '""');
 
     return `"${str}"`;
 }
 
-/**
- * Fetches remote job data from the REST API and exports it to a CSV file.
- *
- * @param {string} fileName - Output CSV file name (defaults to 'java_remote_jobs_usa.csv')
- * @returns {Promise<number>} Number of records exported
- */
 export async function exportJobsToCsv(fileName = 'java_remote_jobs_usa.csv') {
     const apiUrl = 'https://jobicy.com/api/v2/remote-jobs?geo=usa&tag=java';
 
