@@ -11,14 +11,35 @@ app.use(express.json());
 let devs = [
     { devId: "1", name: "Nintendo", headquarters: "Kyoto, Japan", website: "https://nintendo.com" },
     { devId: "2", name: "Valve", headquarters: "Bellevue, Washington", website: "https://valvesoftware.com" },
-    {devId: "3", name: "Ubiosft Montreal", headquarters: "Montreal, Canada", website: "https://ubisoftMontreal.com" }
+    { devId: 3, name: "Epic Games", headquarters: "Cary, North Carolina", website: "https://EpicGames.com" },
 ];
 
 let games = [
     { gameId: "1", entryId: "G-001", title: "The Legend of Zelda", genre: "Adventure", devId: "1" },
     { gameId: "2", entryId: "G-002", title: "Half-Life", genre: "FPS", devId: "2" },
-    {gameId: "3", entryId: "G-003", title: "Fortnite", genre: "Third Person Shooter and Battle Royale", devId: "3" }
+    { gameId: "3", entryId: "G-003", title: "Fortnite", genre: "Third Person Shooter and Battle Royale", devId: "3" },
 ];
+
+// Helper functions for linking/unlinking
+const linkGameAndDev = (devId, gameId) => {
+    const dev = devs.find(d => d.devId === devId);
+    const game = games.find(g => g.gameId === gameId);
+
+    if (!dev || !game) return null;
+    game.devId = devId;
+    return { dev, game };
+};
+
+const unlinkGameAndDev = (devId, gameId) => {
+    const dev = devs.find(d => d.devId === devId);
+    const game = games.find(g => g.gameId === gameId);
+
+    if (!dev || !game) return null;
+    if (game.devId === devId) {
+        game.devId = null;
+    }
+    return { dev, game };
+};
 
 // ==========================================
 // DEVS ENDPOINTS
@@ -167,6 +188,46 @@ app.get('/games/:gameId', (req, res) => {
 
     const dev = devs.find(d => d.devId === game.devId);
     res.json({ ...game, dev: dev || null });
+});
+
+// ==========================================
+// LINKS ENDPOINTS
+// ==========================================
+
+// PUT /devs/:devId/games/:gameId - Link Game to Dev
+app.put('/devs/:devId/games/:gameId', (req, res) => {
+    const result = linkGameAndDev(req.params.devId, req.params.gameId);
+    if (!result) {
+        return res.status(404).json({ error: "Dev or Game not found" });
+    }
+    res.json({ message: "Game linked to Dev successfully", ...result });
+});
+
+// DELETE /devs/:devId/games/:gameId - Unlink Game from Dev
+app.delete('/devs/:devId/games/:gameId', (req, res) => {
+    const result = unlinkGameAndDev(req.params.devId, req.params.gameId);
+    if (!result) {
+        return res.status(404).json({ error: "Dev or Game not found" });
+    }
+    res.json({ message: "Game unlinked from Dev successfully", ...result });
+});
+
+// PUT /games/:gameId/devs/:devId - Link Dev to Game
+app.put('/games/:gameId/devs/:devId', (req, res) => {
+    const result = linkGameAndDev(req.params.devId, req.params.gameId);
+    if (!result) {
+        return res.status(404).json({ error: "Dev or Game not found" });
+    }
+    res.json({ message: "Dev linked to Game successfully", ...result });
+});
+
+// DELETE /games/:gameId/devs/:devId - Unlink Dev from Game
+app.delete('/games/:gameId/devs/:devId', (req, res) => {
+    const result = unlinkGameAndDev(req.params.devId, req.params.gameId);
+    if (!result) {
+        return res.status(404).json({ error: "Dev or Game not found" });
+    }
+    res.json({ message: "Dev unlinked from Game successfully", ...result });
 });
 
 // Start Server

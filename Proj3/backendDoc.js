@@ -13,7 +13,7 @@ const swaggerDocument = {
     info: {
         title: 'Devs & Games API',
         version: '1.0.0',
-        description: 'API documentation for managing Devs and Games.'
+        description: 'API documentation for managing Devs, Games, and their Links.'
     },
     servers: [{ url: `http://localhost:${PORT}` }],
     paths: {
@@ -382,6 +382,98 @@ const swaggerDocument = {
                 responses: {
                     '200': { description: 'Game deleted successfully' },
                     '404': { description: 'Game not found' }
+                }
+            }
+        },
+        '/devs/{devId}/games/{gameId}': {
+            put: {
+                tags: ['Links'],
+                summary: 'Link Game to Dev',
+                parameters: [
+                    {
+                        name: 'devId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    },
+                    {
+                        name: 'gameId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    }
+                ],
+                responses: {
+                    '200': { description: 'Game linked to Dev successfully' },
+                    '404': { description: 'Dev or Game not found' }
+                }
+            },
+            delete: {
+                tags: ['Links'],
+                summary: 'Unlink Game from Dev',
+                parameters: [
+                    {
+                        name: 'devId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    },
+                    {
+                        name: 'gameId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    }
+                ],
+                responses: {
+                    '200': { description: 'Game unlinked from Dev successfully' },
+                    '404': { description: 'Dev or Game not found' }
+                }
+            }
+        },
+        '/games/{gameId}/devs/{devId}': {
+            put: {
+                tags: ['Links'],
+                summary: 'Link Dev to Game',
+                parameters: [
+                    {
+                        name: 'gameId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    },
+                    {
+                        name: 'devId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    }
+                ],
+                responses: {
+                    '200': { description: 'Dev linked to Game successfully' },
+                    '404': { description: 'Dev or Game not found' }
+                }
+            },
+            delete: {
+                tags: ['Links'],
+                summary: 'Unlink Dev from Game',
+                parameters: [
+                    {
+                        name: 'gameId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    },
+                    {
+                        name: 'devId',
+                        in: 'path',
+                        required: true,
+                        schema: { type: 'string' }
+                    }
+                ],
+                responses: {
+                    '200': { description: 'Dev unlinked from Game successfully' },
+                    '404': { description: 'Dev or Game not found' }
                 }
             }
         }
